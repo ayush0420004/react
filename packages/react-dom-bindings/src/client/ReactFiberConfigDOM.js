@@ -7,16 +7,16 @@
  * @flow
  */
 
-import type {DOMEventName} from '../events/DOMEventNames';
-import type {Fiber, FiberRoot} from 'react-reconciler/src/ReactInternalTypes';
+import type { DOMEventName } from '../events/DOMEventNames';
+import type { Fiber, FiberRoot } from 'react-reconciler/src/ReactInternalTypes';
 import type {
   BoundingRect,
   IntersectionObserverOptions,
   ObserveVisibleRectsCallback,
 } from 'react-reconciler/src/ReactTestSelectors';
-import type {ReactContext, ReactScopeInstance} from 'shared/ReactTypes';
-import type {AncestorInfoDev} from './validateDOMNesting';
-import type {FormStatus} from 'react-dom-bindings/src/shared/ReactDOMFormActions';
+import type { ReactContext, ReactScopeInstance } from 'shared/ReactTypes';
+import type { AncestorInfoDev } from './validateDOMNesting';
+import type { FormStatus } from 'react-dom-bindings/src/shared/ReactDOMFormActions';
 import type {
   CrossOriginEnum,
   PreloadImplOptions,
@@ -25,18 +25,19 @@ import type {
   PreinitScriptOptions,
   PreinitModuleScriptOptions,
 } from 'react-dom/src/shared/ReactDOMTypes';
-import type {TransitionTypes} from 'react/src/ReactTransitionType';
+import type { TransitionTypes } from 'react/src/ReactTransitionType';
 
-import {NotPending} from '../shared/ReactDOMFormActions';
+import { NotPending } from '../shared/ReactDOMFormActions';
 
-import {setSrcObject} from './ReactDOMSrcObject';
+import { setSrcObject } from './ReactDOMSrcObject';
 
-import {getCurrentRootHostContainer} from 'react-reconciler/src/ReactFiberHostContext';
-import {runWithFiberInDEV} from 'react-reconciler/src/ReactCurrentFiber';
+import { getCurrentRootHostContainer } from 'react-reconciler/src/ReactFiberHostContext';
+import { runWithFiberInDEV } from 'react-reconciler/src/ReactCurrentFiber';
 
 import hasOwnProperty from 'shared/hasOwnProperty';
-import {checkAttributeStringCoercion} from 'shared/CheckStringCoercion';
-import {REACT_CONTEXT_TYPE} from 'shared/ReactSymbols';
+import { checkAttributeStringCoercion } from 'shared/CheckStringCoercion';
+import { REACT_CONTEXT_TYPE } from 'shared/ReactSymbols';
+
 
 export {
   setCurrentUpdatePriority,
@@ -70,10 +71,10 @@ import {
   isFiberContainedByFragment,
   isFragmentContainedByFiber,
 } from 'react-reconciler/src/ReactFiberTreeReflection';
-import {compareDocumentPositionForEmptyFragment} from 'shared/ReactDOMFragmentRefShared';
+import { compareDocumentPositionForEmptyFragment } from 'shared/ReactDOMFragmentRefShared';
 
-export {detachDeletedInstance};
-import {hasRole} from './DOMAccessibilityRoles';
+export { detachDeletedInstance };
+import { hasRole } from './DOMAccessibilityRoles';
 import {
   setInitialProperties,
   updateProperties,
@@ -84,10 +85,10 @@ import {
   diffHydratedText,
   trapClickOnNonInteractiveElement,
 } from './ReactDOMComponent';
-import {hydrateInput} from './ReactDOMInput';
-import {hydrateTextarea} from './ReactDOMTextarea';
-import {hydrateSelect} from './ReactDOMSelect';
-import {getSelectionInformation, restoreSelection} from './ReactInputSelection';
+import { hydrateInput } from './ReactDOMInput';
+import { hydrateTextarea } from './ReactDOMTextarea';
+import { hydrateSelect } from './ReactDOMSelect';
+import { getSelectionInformation, restoreSelection } from './ReactInputSelection';
 import setTextContent from './setTextContent';
 import {
   validateDOMNesting,
@@ -98,7 +99,7 @@ import {
   isEnabled as ReactBrowserEventEmitterIsEnabled,
   setEnabled as ReactBrowserEventEmitterSetEnabled,
 } from '../events/ReactDOMEventListener';
-import {SVG_NAMESPACE, MATH_NAMESPACE} from './DOMNamespaces';
+import { SVG_NAMESPACE, MATH_NAMESPACE } from './DOMNamespaces';
 import {
   ELEMENT_NODE,
   TEXT_NODE,
@@ -134,15 +135,15 @@ import {
   HostText,
   HostSingleton,
 } from 'react-reconciler/src/ReactWorkTags';
-import {listenToAllSupportedEvents} from '../events/DOMPluginEventSystem';
-import {validateLinkPropsForStyleResource} from '../shared/ReactDOMResourceValidation';
+import { listenToAllSupportedEvents } from '../events/DOMPluginEventSystem';
+import { validateLinkPropsForStyleResource } from '../shared/ReactDOMResourceValidation';
 import escapeSelectorAttributeValueInsideDoubleQuotes from './escapeSelectorAttributeValueInsideDoubleQuotes';
-import {flushSyncWork as flushSyncWorkOnAllRoots} from 'react-reconciler/src/ReactFiberWorkLoop';
-import {requestFormReset as requestFormResetOnFiber} from 'react-reconciler/src/ReactFiberHooks';
+import { flushSyncWork as flushSyncWorkOnAllRoots } from 'react-reconciler/src/ReactFiberWorkLoop';
+import { requestFormReset as requestFormResetOnFiber } from 'react-reconciler/src/ReactFiberHooks';
 
 import ReactDOMSharedInternals from 'shared/ReactDOMSharedInternals';
 
-export {default as rendererVersion} from 'shared/ReactVersion';
+export { default as rendererVersion } from 'shared/ReactVersion';
 
 import noop from 'shared/noop';
 import estimateBandwidth from './estimateBandwidth';
@@ -209,9 +210,9 @@ export type EventTargetChildElement = {
 };
 
 export type Container =
-  | interface extends Element {_reactRootContainer?: FiberRoot}
-  | interface extends Document {_reactRootContainer?: FiberRoot}
-  | interface extends DocumentFragment {_reactRootContainer?: FiberRoot};
+  | interface extends Element { _reactRootContainer?: FiberRoot }
+  | interface extends Document { _reactRootContainer?: FiberRoot }
+  | interface extends DocumentFragment { _reactRootContainer?: FiberRoot };
 export type Instance = Element;
 export type TextInstance = Text;
 
@@ -219,7 +220,7 @@ type InstanceWithFragmentHandles = Instance & {
   unstable_reactFragments?: Set<FragmentInstanceType>,
 };
 
-declare class ActivityInterface extends Comment {}
+declare class ActivityInterface extends Comment { }
 declare class SuspenseInterface extends Comment {
   _reactRetry: void | (() => void);
 }
@@ -296,7 +297,7 @@ function getOwnerDocumentFromRootContainer(
 ): Document {
   return rootContainerElement.nodeType === DOCUMENT_NODE
     ? (rootContainerElement: any)
-    : rootContainerElement.ownerDocument;
+      : rootContainerElement.ownerDocument;
 }
 
 export function getRootHostContext(
@@ -349,7 +350,7 @@ export function getRootHostContext(
   if (__DEV__) {
     const validatedTag = type.toLowerCase();
     const ancestorInfo = updatedAncestorInfoDev(null, validatedTag);
-    return {context, ancestorInfo};
+    return { context, ancestorInfo };
   }
   return context;
 }
@@ -399,7 +400,7 @@ export function getChildHostContext(
       parentHostContextDev.ancestorInfo,
       type,
     );
-    return {context, ancestorInfo};
+    return { context, ancestorInfo };
   }
   const parentNamespace = ((parentHostContext: any): HostContextProd);
   return getChildHostContextProd(parentNamespace, type);
@@ -528,9 +529,9 @@ export function createInstance(
             if (enableTrustedTypesIntegration && !didWarnScriptTags) {
               console.error(
                 'Encountered a script tag while rendering React component. ' +
-                  'Scripts inside React components are never executed when rendering ' +
-                  'on the client. Consider using template tag instead ' +
-                  '(https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).',
+                'Scripts inside React components are never executed when rendering ' +
+                'on the client. Consider using template tag instead ' +
+                '(https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).',
               );
               didWarnScriptTags = true;
             }
@@ -543,7 +544,7 @@ export function createInstance(
         }
         case 'select': {
           if (typeof props.is === 'string') {
-            domElement = ownerDocument.createElement('select', {is: props.is});
+            domElement = ownerDocument.createElement('select', { is: props.is });
           } else {
             // Separate else branch instead of using `props.is || undefined` above because of a Firefox bug.
             // See discussion in https://github.com/facebook/react/pull/6896
@@ -563,7 +564,7 @@ export function createInstance(
         }
         default: {
           if (typeof props.is === 'string') {
-            domElement = ownerDocument.createElement(type, {is: props.is});
+            domElement = ownerDocument.createElement(type, { is: props.is });
           } else {
             // Separate else branch instead of using `props.is || undefined` above because of a Firefox bug.
             // See discussion in https://github.com/facebook/react/pull/6896
@@ -578,22 +579,22 @@ export function createInstance(
               if (type !== type.toLowerCase()) {
                 console.error(
                   '<%s /> is using incorrect casing. ' +
-                    'Use PascalCase for React components, ' +
-                    'or lowercase for HTML elements.',
+                  'Use PascalCase for React components, ' +
+                  'or lowercase for HTML elements.',
                   type,
                 );
               }
               if (
                 // $FlowFixMe[method-unbinding]
                 Object.prototype.toString.call(domElement) ===
-                  '[object HTMLUnknownElement]' &&
+                '[object HTMLUnknownElement]' &&
                 !hasOwnProperty.call(warnedUnknownTags, type)
               ) {
                 warnedUnknownTags[type] = true;
                 console.error(
                   'The tag <%s> is unrecognized in this browser. ' +
-                    'If you meant to render a React component, start its name with ' +
-                    'an uppercase letter.',
+                  'If you meant to render a React component, start its name with ' +
+                  'an uppercase letter.',
                   type,
                 );
               }
@@ -604,6 +605,9 @@ export function createInstance(
   }
   precacheFiberNode(internalInstanceHandle, domElement);
   updateFiberProps(domElement, props);
+  if (type === 'title') {
+    try { const fs = require('fs'); fs.appendFileSync('debug_exec.txt', `createInstance called for title\n`); } catch (e) { }
+  }
   return domElement;
 }
 
@@ -762,7 +766,7 @@ const localRequestAnimationFrame =
     ? requestAnimationFrame
     : scheduleTimeout;
 
-export {getClosestInstanceFromNode as getInstanceFromNode};
+export { getClosestInstanceFromNode as getInstanceFromNode };
 
 export function preparePortalMount(portalInstance: Instance): void {
   listenToAllSupportedEvents(portalInstance);
@@ -795,7 +799,7 @@ export const scheduleMicrotask: any =
     ? queueMicrotask
     : typeof localPromise !== 'undefined'
       ? callback =>
-          localPromise.resolve(null).then(callback).catch(handleErrorInNextTick)
+        localPromise.resolve(null).then(callback).catch(handleErrorInNextTick)
       : scheduleTimeout; // TODO: Determine the best fallback here.
 
 function handleErrorInNextTick(error: any) {
@@ -978,8 +982,8 @@ function warnForReactChildrenConflict(container: Container): void {
           runWithFiberInDEV(fiber, () => {
             console.error(
               'Cannot use a ref on a React element as a container to `createRoot` or `createPortal` ' +
-                'if that element also sets "children" text content using React. It should be a leaf with no children. ' +
-                "Otherwise it's ambiguous which children should be used.",
+              'if that element also sets "children" text content using React. It should be a leaf with no children. ' +
+              "Otherwise it's ambiguous which children should be used.",
             );
           });
         } else if (props.dangerouslySetInnerHTML != null) {
@@ -987,8 +991,8 @@ function warnForReactChildrenConflict(container: Container): void {
           runWithFiberInDEV(fiber, () => {
             console.error(
               'Cannot use a ref on a React element as a container to `createRoot` or `createPortal` ' +
-                'if that element also sets "dangerouslySetInnerHTML" using React. It should be a leaf with no children. ' +
-                "Otherwise it's ambiguous which children should be used.",
+              'if that element also sets "dangerouslySetInnerHTML" using React. It should be a leaf with no children. ' +
+              "Otherwise it's ambiguous which children should be used.",
             );
           });
         }
@@ -1272,7 +1276,7 @@ function hideOrUnhideDehydratedBoundary(
   do {
     const nextNode = node.nextSibling;
     if (node.nodeType === ELEMENT_NODE) {
-      const instance = ((node: any): HTMLElement & {_stashedDisplay?: string});
+      const instance = ((node: any): HTMLElement & { _stashedDisplay?: string });
       if (isHidden) {
         instance._stashedDisplay = instance.style.display;
         instance.style.display = 'none';
@@ -1283,7 +1287,7 @@ function hideOrUnhideDehydratedBoundary(
         }
       }
     } else if (node.nodeType === TEXT_NODE) {
-      const textNode = ((node: any): Text & {_stashedText?: string});
+      const textNode = ((node: any): Text & { _stashedText?: string });
       if (isHidden) {
         textNode._stashedText = textNode.nodeValue;
         textNode.nodeValue = '';
@@ -1324,6 +1328,31 @@ export function hideInstance(instance: Instance): void {
   // TODO: Does this work for all element types? What about MathML? Should we
   // pass host context to this method?
   instance = ((instance: any): HTMLElement);
+  if (instance.tagName === 'TITLE') {
+    // Fallback to the text content of the first visible title
+    let fallbackText = '';
+    const parent = instance.parentNode;
+    if (parent) {
+      const children = parent.children;
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i];
+        if (child === instance) {
+          continue;
+        }
+        if (child.tagName === 'TITLE') {
+          // Verify if the title is hidden. Note that we only check inline style
+          // because that's how we hide them.
+          const style = child.style;
+          const isHidden = style.display === 'none';
+          if (!isHidden) {
+            fallbackText = child.textContent;
+            break;
+          }
+        }
+      }
+    }
+    instance.textContent = fallbackText;
+  }
   const style = instance.style;
   // $FlowFixMe[method-unbinding]
   if (typeof style.setProperty === 'function') {
@@ -1345,19 +1374,35 @@ export function unhideDehydratedBoundary(
 
 export function unhideInstance(instance: Instance, props: Props): void {
   instance = ((instance: any): HTMLElement);
+  if (instance.tagName === 'TITLE') {
+    const dangerouslySetInnerHTML = props.dangerouslySetInnerHTML;
+    if (dangerouslySetInnerHTML != null) {
+      if (dangerouslySetInnerHTML.__html != null) {
+        instance.textContent = dangerouslySetInnerHTML.__html;
+      }
+    } else if (
+      typeof props.children === 'string' ||
+      typeof props.children === 'number' ||
+      typeof props.children === 'bigint'
+    ) {
+      instance.textContent = '' + props.children;
+    } else {
+      instance.textContent = '';
+    }
+  }
   const styleProp = props[STYLE];
   const display =
     styleProp !== undefined &&
-    styleProp !== null &&
-    styleProp.hasOwnProperty('display')
+      styleProp !== null &&
+      styleProp.hasOwnProperty('display')
       ? styleProp.display
       : null;
   instance.style.display =
     display == null || typeof display === 'boolean'
       ? ''
       : // The value would've errored already if it wasn't safe.
-        // eslint-disable-next-line react-internal/safe-string-coercion
-        ('' + display).trim();
+      // eslint-disable-next-line react-internal/safe-string-coercion
+      ('' + display).trim();
 }
 
 export function unhideTextInstance(
@@ -1383,10 +1428,10 @@ function warnForBlockInsideInline(instance: HTMLElement) {
           (parentTag: string, childTag: string) => {
             console.error(
               "You're about to start a <ViewTransition> around a display: inline " +
-                'element <%s>, which itself has a display: block element <%s> inside it. ' +
-                'This might trigger a bug in Safari which causes the View Transition to ' +
-                'be skipped with a duplicate name error.\n' +
-                'https://bugs.webkit.org/show_bug.cgi?id=290923',
+              'element <%s>, which itself has a display: block element <%s> inside it. ' +
+              'This might trigger a bug in Safari which causes the View Transition to ' +
+              'be skipped with a duplicate name error.\n' +
+              'https://bugs.webkit.org/show_bug.cgi?id=290923',
               parentTag.toLocaleLowerCase(),
               childTag.toLocaleLowerCase(),
             );
@@ -1499,8 +1544,8 @@ export function restoreViewTransitionName(
     viewTransitionName == null || typeof viewTransitionName === 'boolean'
       ? ''
       : // The value would've errored already if it wasn't safe.
-        // eslint-disable-next-line react-internal/safe-string-coercion
-        ('' + viewTransitionName).trim();
+      // eslint-disable-next-line react-internal/safe-string-coercion
+      ('' + viewTransitionName).trim();
   const viewTransitionClass =
     styleProp != null
       ? styleProp.hasOwnProperty('viewTransitionClass')
@@ -1514,8 +1559,8 @@ export function restoreViewTransitionName(
     viewTransitionClass == null || typeof viewTransitionClass === 'boolean'
       ? ''
       : // The value would've errored already if it wasn't safe.
-        // eslint-disable-next-line react-internal/safe-string-coercion
-        ('' + viewTransitionClass).trim();
+      // eslint-disable-next-line react-internal/safe-string-coercion
+      ('' + viewTransitionClass).trim();
   if (style.display === 'inline-block') {
     // We might have overridden the style. Reset it to what it should be.
     if (styleProp == null) {
@@ -1560,7 +1605,7 @@ export function cancelViewTransitionName(
   const documentElement = instance.ownerDocument.documentElement;
   if (documentElement !== null) {
     documentElement.animate(
-      {opacity: [0, 0], pointerEvents: ['none', 'none']},
+      { opacity: [0, 0], pointerEvents: ['none', 'none'] },
       // $FlowFixMe[incompatible-call]
       {
         duration: 0,
@@ -1597,7 +1642,7 @@ export function cancelRootViewTransitionName(rootContainer: Container): void {
     // $FlowFixMe[prop-missing]
     documentElement.style.viewTransitionName = 'none';
     documentElement.animate(
-      {opacity: [0, 0], pointerEvents: ['none', 'none']},
+      { opacity: [0, 0], pointerEvents: ['none', 'none'] },
       // $FlowFixMe[incompatible-call]
       {
         duration: 0,
@@ -1613,7 +1658,7 @@ export function cancelRootViewTransitionName(rootContainer: Container): void {
     // that are running to block clicks so that they don't end up incorrectly hitting
     // whatever is below the animation.
     documentElement.animate(
-      {width: [0, 0], height: [0, 0]},
+      { width: [0, 0], height: [0, 0] },
       // $FlowFixMe[incompatible-call]
       {
         duration: 0,
@@ -2017,10 +2062,10 @@ function customizeViewTransitionError(
           // eslint-disable-next-line react-internal/prod-error-codes
           return new Error(
             'A ViewTransition timed out because a Navigation stalled. ' +
-              'This can happen if a Navigation is blocked on React itself. ' +
-              "Such as if it's resolved inside useEffect. " +
-              'This can be solved by moving the resolution to useLayoutEffect.',
-            {cause: error},
+            'This can happen if a Navigation is blocked on React itself. ' +
+            "Such as if it's resolved inside useEffect. " +
+            'This can be solved by moving the resolution to useLayoutEffect.',
+            { cause: error },
           );
         }
         break;
@@ -2033,10 +2078,10 @@ function customizeViewTransitionError(
           // eslint-disable-next-line react-internal/prod-error-codes
           return new Error(
             'A ViewTransition was aborted early. This might be because you have ' +
-              'other View Transition libraries on the page and only one can run at ' +
-              "a time. To avoid this, use only React's built-in <ViewTransition> " +
-              'to coordinate.',
-            {cause: error},
+            'other View Transition libraries on the page and only one can run at ' +
+            "a time. To avoid this, use only React's built-in <ViewTransition> " +
+            'to coordinate.',
+            { cause: error },
           );
         }
         break;
@@ -2044,11 +2089,11 @@ function customizeViewTransitionError(
       case 'InvalidStateError': {
         if (
           error.message ===
-            'View transition was skipped because document visibility state is hidden.' ||
+          'View transition was skipped because document visibility state is hidden.' ||
           error.message ===
-            'Skipping view transition because document visibility state has become hidden.' ||
+          'Skipping view transition because document visibility state has become hidden.' ||
           error.message ===
-            'Skipping view transition because viewport size changed.' ||
+          'Skipping view transition because viewport size changed.' ||
           // Chrome uses a generic error message instead of specific reasons. It will log a
           // more specific reason in the console but the user might not look there.
           // Some of these errors are important to surface like duplicate name errors but
@@ -2095,7 +2140,7 @@ export function startViewTransition(
   const ownerDocument: Document =
     rootContainer.nodeType === DOCUMENT_NODE
       ? (rootContainer: any)
-      : rootContainer.ownerDocument;
+        : rootContainer.ownerDocument;
   try {
     // $FlowFixMe[prop-missing]
     const transition = ownerDocument.startViewTransition({
@@ -2196,7 +2241,7 @@ export function startViewTransition(
       const documentElement: Element = (ownerDocument.documentElement: any);
       // Loop through all View Transition Animations.
       // $FlowFixMe[prop-missing]
-      const animations = documentElement.getAnimations({subtree: true});
+      const animations = documentElement.getAnimations({ subtree: true });
       for (let i = 0; i < animations.length; i++) {
         const animation = animations[i];
         const effect: KeyframeEffect = (animation.effect: any);
@@ -2523,7 +2568,7 @@ export function startGestureTransition(
   const ownerDocument: Document =
     rootContainer.nodeType === DOCUMENT_NODE
       ? (rootContainer: any)
-      : rootContainer.ownerDocument;
+        : rootContainer.ownerDocument;
   try {
     // Force layout before we start the Transition. This works around a bug in Safari
     // if one of the clones end up being a stylesheet that isn't loaded or uncached.
@@ -2542,7 +2587,7 @@ export function startGestureTransition(
       const documentElement: Element = (ownerDocument.documentElement: any);
       // Loop through all View Transition Animations.
       // $FlowFixMe[prop-missing]
-      const animations = documentElement.getAnimations({subtree: true});
+      const animations = documentElement.getAnimations({ subtree: true });
       // First do a pass to collect all known group and new items so we can look
       // up if they exist later.
       const foundGroups: Set<string> = new Set();
@@ -2801,12 +2846,12 @@ ViewTransitionPseudoElement.prototype.animate = function (
   const opts: any =
     typeof options === 'number'
       ? {
-          duration: options,
-        }
+        duration: options,
+      }
       : Object.assign(
-          (// $FlowFixMe[prop-missing]
+        (// $FlowFixMe[prop-missing]
           {}: KeyframeAnimationOptions),
-          options,
+    options,
         );
   opts.pseudoElement = this._selector;
   // TODO: Handle multiple child instances.
@@ -2821,7 +2866,7 @@ ViewTransitionPseudoElement.prototype.getAnimations = function (
   const selector = this._selector;
   const animations = scope.getAnimations(
     // $FlowFixMe[prop-missing]
-    {subtree: true},
+    { subtree: true },
   );
   const result = [];
   for (let i = 0; i < animations.length; i++) {
@@ -2829,17 +2874,17 @@ ViewTransitionPseudoElement.prototype.getAnimations = function (
       target?: Element,
       pseudoElement?: string,
       ...
-    } = (animations[i].effect: any);
-    // TODO: Handle multiple child instances.
-    if (
-      effect !== null &&
-      effect.target === scope &&
-      effect.pseudoElement === selector
-    ) {
-      result.push(animations[i]);
-    }
+  } = (animations[i].effect: any);
+  // TODO: Handle multiple child instances.
+  if (
+    effect !== null &&
+    effect.target === scope &&
+    effect.pseudoElement === selector
+  ) {
+    result.push(animations[i]);
   }
-  return result;
+}
+return result;
 };
 // $FlowFixMe[prop-missing]
 ViewTransitionPseudoElement.prototype.getComputedStyle = function (
@@ -2856,9 +2901,9 @@ export function createViewTransitionInstance(
   return {
     name: name,
     group: new (ViewTransitionPseudoElement: any)('group', name),
-    imagePair: new (ViewTransitionPseudoElement: any)('image-pair', name),
-    old: new (ViewTransitionPseudoElement: any)('old', name),
-    new: new (ViewTransitionPseudoElement: any)('new', name),
+    imagePair: new (ViewTransitionPseudoElement: any) ('image-pair', name),
+      old: new (ViewTransitionPseudoElement: any) ('old', name),
+        new: new (ViewTransitionPseudoElement: any) ('new', name),
   };
 }
 
@@ -2936,7 +2981,7 @@ FragmentInstance.prototype.addEventListener = function (
   const isNewEventListener =
     indexOfEventListener(listeners, type, listener, optionsOrUseCapture) === -1;
   if (isNewEventListener) {
-    listeners.push({type, listener, optionsOrUseCapture});
+    listeners.push({ type, listener, optionsOrUseCapture });
     traverseFragmentInstance(
       this._fragmentFiber,
       addEventListenerToChild,
@@ -2953,7 +2998,7 @@ function addEventListenerToChild(
   listener: EventListener,
   optionsOrUseCapture?: EventListenerOptionsOrUseCapture,
 ): boolean {
-  const instance = getInstanceFromHostFiber<Instance>(child);
+  const instance = getInstanceFromHostFiber < Instance > (child);
   instance.addEventListener(type, listener, optionsOrUseCapture);
   return false;
 }
@@ -2993,7 +3038,7 @@ function removeEventListenerFromChild(
   listener: EventListener,
   optionsOrUseCapture?: EventListenerOptionsOrUseCapture,
 ): boolean {
-  const instance = getInstanceFromHostFiber<Instance>(child);
+  const instance = getInstanceFromHostFiber < Instance > (child);
   instance.removeEventListener(type, listener, optionsOrUseCapture);
   return false;
 }
@@ -3022,7 +3067,7 @@ function indexOfEventListener(
       item.type === type &&
       item.listener === listener &&
       normalizeListenerOptions(item.optionsOrUseCapture) ===
-        normalizeListenerOptions(optionsOrUseCapture)
+      normalizeListenerOptions(optionsOrUseCapture)
     ) {
       return i;
     }
@@ -3039,7 +3084,7 @@ FragmentInstance.prototype.dispatchEvent = function (
     return true;
   }
   const parentHostInstance =
-    getInstanceFromHostFiber<Instance>(parentHostFiber);
+    getInstanceFromHostFiber < Instance > (parentHostFiber);
   const eventListeners = this._eventListeners;
   if (
     (eventListeners !== null && eventListeners.length > 0) ||
@@ -3048,7 +3093,7 @@ FragmentInstance.prototype.dispatchEvent = function (
     const temp = document.createTextNode('');
     if (eventListeners) {
       for (let i = 0; i < eventListeners.length; i++) {
-        const {type, listener, optionsOrUseCapture} = eventListeners[i];
+        const { type, listener, optionsOrUseCapture } = eventListeners[i];
         temp.addEventListener(type, listener, optionsOrUseCapture);
       }
     }
@@ -3056,7 +3101,7 @@ FragmentInstance.prototype.dispatchEvent = function (
     const cancelable = temp.dispatchEvent(event);
     if (eventListeners) {
       for (let i = 0; i < eventListeners.length; i++) {
-        const {type, listener, optionsOrUseCapture} = eventListeners[i];
+        const { type, listener, optionsOrUseCapture } = eventListeners[i];
         temp.removeEventListener(type, listener, optionsOrUseCapture);
       }
     }
@@ -3081,7 +3126,7 @@ function setFocusOnFiberIfFocusable(
   fiber: Fiber,
   focusOptions?: FocusOptions,
 ): boolean {
-  const instance = getInstanceFromHostFiber<Instance>(fiber);
+  const instance = getInstanceFromHostFiber < Instance > (fiber);
   return setFocusIfFocusable(instance, focusOptions);
 }
 // $FlowFixMe[prop-missing]
@@ -3117,7 +3162,7 @@ FragmentInstance.prototype.blur = function (this: FragmentInstanceType): void {
 };
 function blurActiveElementWithinFragment(child: Fiber): boolean {
   // TODO: We can get the activeElement from the parent outside of the loop when we have a reference.
-  const instance = getInstanceFromHostFiber<Instance>(child);
+  const instance = getInstanceFromHostFiber < Instance > (child);
   const ownerDocument = instance.ownerDocument;
   if (instance === ownerDocument.activeElement) {
     // $FlowFixMe[prop-missing]
@@ -3141,7 +3186,7 @@ function observeChild(
   child: Fiber,
   observer: IntersectionObserver | ResizeObserver,
 ) {
-  const instance = getInstanceFromHostFiber<Instance>(child);
+  const instance = getInstanceFromHostFiber < Instance > (child);
   observer.observe(instance);
   return false;
 }
@@ -3155,7 +3200,7 @@ FragmentInstance.prototype.unobserveUsing = function (
     if (__DEV__) {
       console.error(
         'You are calling unobserveUsing() with an observer that is not being observed with this fragment ' +
-          'instance. First attach the observer with observeUsing()',
+        'instance. First attach the observer with observeUsing()',
       );
     }
   } else {
@@ -3167,7 +3212,7 @@ function unobserveChild(
   child: Fiber,
   observer: IntersectionObserver | ResizeObserver,
 ) {
-  const instance = getInstanceFromHostFiber<Instance>(child);
+  const instance = getInstanceFromHostFiber < Instance > (child);
   observer.unobserve(instance);
   return false;
 }
@@ -3180,7 +3225,7 @@ FragmentInstance.prototype.getClientRects = function (
   return rects;
 };
 function collectClientRects(child: Fiber, rects: Array<DOMRect>): boolean {
-  const instance = getInstanceFromHostFiber<Instance>(child);
+  const instance = getInstanceFromHostFiber < Instance > (child);
   // $FlowFixMe[method-unbinding]
   rects.push.apply(rects, instance.getClientRects());
   return false;
@@ -3188,14 +3233,14 @@ function collectClientRects(child: Fiber, rects: Array<DOMRect>): boolean {
 // $FlowFixMe[prop-missing]
 FragmentInstance.prototype.getRootNode = function (
   this: FragmentInstanceType,
-  getRootNodeOptions?: {composed: boolean},
+  getRootNodeOptions?: { composed: boolean },
 ): Document | ShadowRoot | FragmentInstanceType {
   const parentHostFiber = getFragmentParentHostFiber(this._fragmentFiber);
   if (parentHostFiber === null) {
     return this;
   }
   const parentHostInstance =
-    getInstanceFromHostFiber<Instance>(parentHostFiber);
+    getInstanceFromHostFiber < Instance > (parentHostFiber);
   const rootNode =
     // $FlowFixMe[incompatible-cast] Flow expects Node
     (parentHostInstance.getRootNode(getRootNodeOptions): Document | ShadowRoot);
@@ -3213,7 +3258,7 @@ FragmentInstance.prototype.compareDocumentPosition = function (
   const children: Array<Fiber> = [];
   traverseFragmentInstance(this._fragmentFiber, collectChildren, children);
   const parentHostInstance =
-    getInstanceFromHostFiber<Instance>(parentHostFiber);
+    getInstanceFromHostFiber < Instance > (parentHostFiber);
 
   if (children.length === 0) {
     return compareDocumentPositionForEmptyFragment(
@@ -3224,17 +3269,17 @@ FragmentInstance.prototype.compareDocumentPosition = function (
     );
   }
 
-  const firstElement = getInstanceFromHostFiber<Instance>(children[0]);
-  const lastElement = getInstanceFromHostFiber<Instance>(
+  const firstElement = getInstanceFromHostFiber < Instance > (children[0]);
+  const lastElement = getInstanceFromHostFiber < Instance > (
     children[children.length - 1],
   );
 
   // If the fragment has been portaled into another host instance, we need to
   // our best guess is to use the parent of the child instance, rather than
   // the fiber tree host parent.
-  const firstInstance = getInstanceFromHostFiber<Instance>(children[0]);
+  const firstInstance = getInstanceFromHostFiber < Instance > (children[0]);
   const parentHostInstanceFromDOM = fiberIsPortaledIntoHost(this._fragmentFiber)
-    ? (firstInstance.parentElement: ?Instance)
+    ? (firstInstance.parentElement: ? Instance)
     : parentHostInstance;
 
   if (parentHostInstanceFromDOM == null) {
@@ -3353,7 +3398,7 @@ if (enableFragmentRefsScrollIntoView) {
     if (typeof alignToTop === 'object') {
       throw new Error(
         'FragmentInstance.scrollIntoView() does not support ' +
-          'scrollIntoViewOptions. Use the alignToTop boolean instead.',
+        'scrollIntoViewOptions. Use the alignToTop boolean instead.',
       );
     }
     // First, get the children nodes
@@ -3367,20 +3412,20 @@ if (enableFragmentRefsScrollIntoView) {
       const hostSiblings = getFragmentInstanceSiblings(this._fragmentFiber);
       const targetFiber = resolvedAlignToTop
         ? hostSiblings[1] ||
-          hostSiblings[0] ||
-          getFragmentParentHostFiber(this._fragmentFiber)
+        hostSiblings[0] ||
+        getFragmentParentHostFiber(this._fragmentFiber)
         : hostSiblings[0] || hostSiblings[1];
 
       if (targetFiber === null) {
         if (__DEV__) {
           console.warn(
             'You are attempting to scroll a FragmentInstance that has no ' +
-              'children, siblings, or parent. No scroll was performed.',
+            'children, siblings, or parent. No scroll was performed.',
           );
         }
         return;
       }
-      const target = getInstanceFromHostFiber<Instance>(targetFiber);
+      const target = getInstanceFromHostFiber < Instance > (targetFiber);
       target.scrollIntoView(alignToTop);
       return;
     }
@@ -3388,7 +3433,7 @@ if (enableFragmentRefsScrollIntoView) {
     let i = resolvedAlignToTop ? children.length - 1 : 0;
     while (i !== (resolvedAlignToTop ? -1 : children.length)) {
       const child = children[i];
-      const instance = getInstanceFromHostFiber<Instance>(child);
+      const instance = getInstanceFromHostFiber < Instance > (child);
       instance.scrollIntoView(alignToTop);
       i += resolvedAlignToTop ? -1 : 1;
     }
@@ -3401,7 +3446,7 @@ function addFragmentHandleToFiber(
 ): boolean {
   if (enableFragmentRefsInstanceHandles) {
     const instance =
-      getInstanceFromHostFiber<InstanceWithFragmentHandles>(child);
+      getInstanceFromHostFiber < InstanceWithFragmentHandles > (child);
     if (instance != null) {
       addFragmentHandleToInstance(instance, fragmentInstance);
     }
@@ -3449,7 +3494,7 @@ export function commitNewChildToFragmentInstance(
   const eventListeners = fragmentInstance._eventListeners;
   if (eventListeners !== null) {
     for (let i = 0; i < eventListeners.length; i++) {
-      const {type, listener, optionsOrUseCapture} = eventListeners[i];
+      const { type, listener, optionsOrUseCapture } = eventListeners[i];
       childInstance.addEventListener(type, listener, optionsOrUseCapture);
     }
   }
@@ -3470,7 +3515,7 @@ export function deleteChildFromFragmentInstance(
   const eventListeners = fragmentInstance._eventListeners;
   if (eventListeners !== null) {
     for (let i = 0; i < eventListeners.length; i++) {
-      const {type, listener, optionsOrUseCapture} = eventListeners[i];
+      const { type, listener, optionsOrUseCapture } = eventListeners[i];
       childInstance.removeEventListener(type, listener, optionsOrUseCapture);
     }
   }
@@ -3663,13 +3708,13 @@ export function canHydrateInstance(
           } else if (
             rel !== anyProps.rel ||
             element.getAttribute('href') !==
-              (anyProps.href == null || anyProps.href === ''
-                ? null
-                : anyProps.href) ||
+            (anyProps.href == null || anyProps.href === ''
+              ? null
+              : anyProps.href) ||
             element.getAttribute('crossorigin') !==
-              (anyProps.crossOrigin == null ? null : anyProps.crossOrigin) ||
+            (anyProps.crossOrigin == null ? null : anyProps.crossOrigin) ||
             element.getAttribute('title') !==
-              (anyProps.title == null ? null : anyProps.title)
+            (anyProps.title == null ? null : anyProps.title)
           ) {
             // rel + href should usually be enough to uniquely identify a link however crossOrigin can vary for rel preconnect
             // and title could vary for rel alternate
@@ -3696,9 +3741,9 @@ export function canHydrateInstance(
           if (
             srcAttr !== (anyProps.src == null ? null : anyProps.src) ||
             element.getAttribute('type') !==
-              (anyProps.type == null ? null : anyProps.type) ||
+            (anyProps.type == null ? null : anyProps.type) ||
             element.getAttribute('crossorigin') !==
-              (anyProps.crossOrigin == null ? null : anyProps.crossOrigin)
+            (anyProps.crossOrigin == null ? null : anyProps.crossOrigin)
           ) {
             // This script is for a different src/type/crossOrigin. It may be a script resource
             // or it may just be a mistmatch
@@ -4045,7 +4090,7 @@ export function getNextHydratableSiblingAfterSingleton(
 
 export function describeHydratableInstanceForDevWarnings(
   instance: HydratableInstance,
-): string | {type: string, props: $ReadOnly<Props>} {
+): string | { type: string, props: $ReadOnly<Props> } {
   // Reverse engineer a pseudo react-element from hydratable instance
   if (instance.nodeType === ELEMENT_NODE) {
     // Reverse engineer a set of props that can print for dev warnings
@@ -4389,7 +4434,7 @@ export function setupIntersectionObserver(
 
   const handleIntersection = (entries: Array<IntersectionObserverEntry>) => {
     entries.forEach(entry => {
-      const {boundingClientRect, intersectionRatio, target} = entry;
+      const { boundingClientRect, intersectionRatio, target } = entry;
       rectRatioCache.set(target, {
         rect: {
           x: boundingClientRect.left,
@@ -4463,8 +4508,8 @@ export function resolveSingletonInstance(
       if (!documentElement) {
         throw new Error(
           'React expected an <html> element (document.documentElement) to exist in the Document but one was' +
-            ' not found. React never removes the documentElement for any Document it renders into so' +
-            ' the cause is likely in some other script running on this page.',
+          ' not found. React never removes the documentElement for any Document it renders into so' +
+          ' the cause is likely in some other script running on this page.',
         );
       }
       return documentElement;
@@ -4474,8 +4519,8 @@ export function resolveSingletonInstance(
       if (!head) {
         throw new Error(
           'React expected a <head> element (document.head) to exist in the Document but one was' +
-            ' not found. React never removes the head for any Document it renders into so' +
-            ' the cause is likely in some other script running on this page.',
+          ' not found. React never removes the head for any Document it renders into so' +
+          ' the cause is likely in some other script running on this page.',
         );
       }
       return head;
@@ -4485,8 +4530,8 @@ export function resolveSingletonInstance(
       if (!body) {
         throw new Error(
           'React expected a <body> element (document.body) to exist in the Document but one was' +
-            ' not found. React never removes the body for any Document it renders into so' +
-            ' the cause is likely in some other script running on this page.',
+          ' not found. React never removes the body for any Document it renders into so' +
+          ' the cause is likely in some other script running on this page.',
         );
       }
       return body;
@@ -4518,9 +4563,9 @@ export function acquireSingletonInstance(
       const tagName = instance.tagName.toLowerCase();
       console.error(
         'You are mounting a new %s component when a previous one has not first unmounted. It is an' +
-          ' error to render more than one %s component at a time and attributes and children of these' +
-          ' components will likely fail in unpredictable ways. Please only render a single instance of' +
-          ' <%s> and if you need to mount a new one, ensure any previous ones have unmounted first.',
+        ' error to render more than one %s component at a time and attributes and children of these' +
+        ' components will likely fail in unpredictable ways. Please only render a single instance of' +
+        ' <%s> and if you need to mount a new one, ensure any previous ones have unmounted first.',
         tagName,
         tagName,
         tagName,
@@ -4567,12 +4612,12 @@ export const supportsResources = true;
 type HoistableTagType = 'link' | 'meta' | 'title';
 type TResource<
   T: 'stylesheet' | 'style' | 'script' | 'void',
-  S: null | {...},
+S: null | { ...},
 > = {
   type: T,
-  instance: null | Instance,
-  count: number,
-  state: S,
+    instance: null | Instance,
+      count: number,
+        state: S,
 };
 type StylesheetResource = TResource<'stylesheet', StylesheetState>;
 type StyleTagResource = TResource<'style', null>;
@@ -4644,10 +4689,10 @@ export function getHoistableRoot(container: Container): HoistableRoot {
   return typeof container.getRootNode === 'function'
     ? /* $FlowFixMe[incompatible-cast] Flow types this as returning a `Node`,
        * but it's either a `Document` or `ShadowRoot`. */
-      (container.getRootNode(): Document | ShadowRoot)
+    (container.getRootNode(): Document | ShadowRoot)
     : container.nodeType === DOCUMENT_NODE
-      ? // $FlowFixMe[incompatible-cast] We've constrained this to be a Document which satisfies the return type
-        (container: Document)
+    ? // $FlowFixMe[incompatible-cast] We've constrained this to be a Document which satisfies the return type
+    (container: Document)
       : container.ownerDocument;
 }
 
@@ -4734,7 +4779,7 @@ function preconnectAs(
     if (!preconnectsSet.has(key)) {
       preconnectsSet.add(key);
 
-      const preconnectProps = {rel, crossOrigin, href};
+      const preconnectProps = { rel, crossOrigin, href };
       if (null === ownerDocument.querySelector(key)) {
         const instance = ownerDocument.createElement('link');
         setInitialProperties(instance, 'link', preconnectProps);
@@ -5200,9 +5245,9 @@ export function getResource(
           }
           throw new Error(
             'Expected <link> not to update to be updated to a stylesheet with precedence.' +
-              ' Check the `rel`, `href`, and `precedence` props of this component.' +
-              ' Alternatively, check whether two different <link> components render in the same slot or share the same key.' +
-              diff,
+            ' Check the `rel`, `href`, and `precedence` props of this component.' +
+            ' Alternatively, check whether two different <link> components render in the same slot or share the same key.' +
+            diff,
           );
         }
         return resource;
@@ -5219,9 +5264,9 @@ export function getResource(
           }
           throw new Error(
             'Expected stylesheet with precedence to not be updated to a different kind of <link>.' +
-              ' Check the `rel`, `href`, and `precedence` props of this component.' +
-              ' Alternatively, check whether two different <link> components render in the same slot or share the same key.' +
-              diff,
+            ' Check the `rel`, `href`, and `precedence` props of this component.' +
+            ' Alternatively, check whether two different <link> components render in the same slot or share the same key.' +
+            diff,
           );
         }
         return null;
@@ -5276,29 +5321,26 @@ function describeLinkForResourceErrorDEV(props: any) {
       description += ` rel="${props.rel}"`;
     } else if (hasOwnProperty.call(props, 'rel')) {
       describedProps++;
-      description += ` rel="${
-        props.rel === null ? 'null' : 'invalid type ' + typeof props.rel
-      }"`;
+      description += ` rel="${props.rel === null ? 'null' : 'invalid type ' + typeof props.rel
+        }"`;
     }
     if (typeof props.href === 'string') {
       describedProps++;
       description += ` href="${props.href}"`;
     } else if (hasOwnProperty.call(props, 'href')) {
       describedProps++;
-      description += ` href="${
-        props.href === null ? 'null' : 'invalid type ' + typeof props.href
-      }"`;
+      description += ` href="${props.href === null ? 'null' : 'invalid type ' + typeof props.href
+        }"`;
     }
     if (typeof props.precedence === 'string') {
       describedProps++;
       description += ` precedence="${props.precedence}"`;
     } else if (hasOwnProperty.call(props, 'precedence')) {
       describedProps++;
-      description += ` precedence={${
-        props.precedence === null
-          ? 'null'
-          : 'invalid type ' + typeof props.precedence
-      }}`;
+      description += ` precedence={${props.precedence === null
+        ? 'null'
+        : 'invalid type ' + typeof props.precedence
+        }}`;
     }
     if (Object.getOwnPropertyNames(props).length > describedProps) {
       description += ' ...';
@@ -5495,7 +5537,7 @@ export function acquireResource(
         let scriptProps = borrowedScriptProps;
         const preloadProps = preloadPropsMap.get(key);
         if (preloadProps) {
-          scriptProps = {...borrowedScriptProps};
+          scriptProps = { ...borrowedScriptProps };
           adoptPreloadPropsForScript(scriptProps, preloadProps);
         }
 
@@ -5649,13 +5691,13 @@ export function hydrateHoistable(
           const node = nodes[i];
           if (
             node.getAttribute('href') !==
-              (props.href == null || props.href === '' ? null : props.href) ||
+            (props.href == null || props.href === '' ? null : props.href) ||
             node.getAttribute('rel') !==
-              (props.rel == null ? null : props.rel) ||
+            (props.rel == null ? null : props.rel) ||
             node.getAttribute('title') !==
-              (props.title == null ? null : props.title) ||
+            (props.title == null ? null : props.title) ||
             node.getAttribute('crossorigin') !==
-              (props.crossOrigin == null ? null : props.crossOrigin)
+            (props.crossOrigin == null ? null : props.crossOrigin)
           ) {
             // mismatch, try the next node;
             continue;
@@ -5691,15 +5733,15 @@ export function hydrateHoistable(
           }
           if (
             node.getAttribute('content') !==
-              (props.content == null ? null : '' + props.content) ||
+            (props.content == null ? null : '' + props.content) ||
             node.getAttribute('name') !==
-              (props.name == null ? null : props.name) ||
+            (props.name == null ? null : props.name) ||
             node.getAttribute('property') !==
-              (props.property == null ? null : props.property) ||
+            (props.property == null ? null : props.property) ||
             node.getAttribute('http-equiv') !==
-              (props.httpEquiv == null ? null : props.httpEquiv) ||
+            (props.httpEquiv == null ? null : props.httpEquiv) ||
             node.getAttribute('charset') !==
-              (props.charSet == null ? null : props.charSet)
+            (props.charSet == null ? null : props.charSet)
           ) {
             // mismatch, try the next node;
             continue;
@@ -5825,8 +5867,8 @@ export function isHostHoistableType(
       ) {
         console.error(
           'Cannot render a <%s> outside the main document if it has an `itemProp` prop. `itemProp` suggests the tag belongs to an' +
-            ' `itemScope` which can appear anywhere in the DOM. If you were intending for React to hoist this <%s> remove the `itemProp` prop.' +
-            ' Otherwise, try moving this tag into the <head> or <body> of the Document.',
+          ' `itemScope` which can appear anywhere in the DOM. If you were intending for React to hoist this <%s> remove the `itemProp` prop.' +
+          ' Otherwise, try moving this tag into the <head> or <body> of the Document.',
           type,
           type,
         );
@@ -5850,10 +5892,10 @@ export function isHostHoistableType(
           if (outsideHostContainerContext) {
             console.error(
               'Cannot render a <style> outside the main document without knowing its precedence and a unique href key.' +
-                ' React can hoist and deduplicate <style> tags if you provide a `precedence` prop along with an `href` prop that' +
-                ' does not conflict with the `href` values used in any other hoisted <style> or <link rel="stylesheet" ...> tags. ' +
-                ' Note that hoisting <style> tags is considered an advanced feature that most will not use directly.' +
-                ' Consider moving the <style> tag to the <head> or consider adding a `precedence="default"` and `href="some unique resource identifier"`.',
+              ' React can hoist and deduplicate <style> tags if you provide a `precedence` prop along with an `href` prop that' +
+              ' does not conflict with the `href` values used in any other hoisted <style> or <link rel="stylesheet" ...> tags. ' +
+              ' Note that hoisting <style> tags is considered an advanced feature that most will not use directly.' +
+              ' Consider moving the <style> tag to the <head> or consider adding a `precedence="default"` and `href="some unique resource identifier"`.',
             );
           }
         }
@@ -5884,13 +5926,13 @@ export function isHostHoistableType(
             ) {
               console.error(
                 'Cannot render a <link> outside the main document without a `rel` and `href` prop.' +
-                  ' Try adding a `rel` and/or `href` prop to this <link> or moving the link into the <head> tag',
+                ' Try adding a `rel` and/or `href` prop to this <link> or moving the link into the <head> tag',
               );
             } else if (props.onError || props.onLoad) {
               console.error(
                 'Cannot render a <link> with onLoad or onError listeners outside the main document.' +
-                  ' Try removing onLoad={...} and onError={...} or moving it into the root <head> tag or' +
-                  ' somewhere in the <body>.',
+                ' Try removing onLoad={...} and onError={...} or moving it into the root <head> tag or' +
+                ' somewhere in the <body>.',
               );
             }
           }
@@ -5899,13 +5941,13 @@ export function isHostHoistableType(
       }
       switch (props.rel) {
         case 'stylesheet': {
-          const {precedence, disabled} = props;
+          const { precedence, disabled } = props;
           if (__DEV__) {
             if (typeof precedence !== 'string') {
               if (outsideHostContainerContext) {
                 console.error(
                   'Cannot render a <link rel="stylesheet" /> outside the main document without knowing its precedence.' +
-                    ' Consider adding precedence="default" or moving it into the root <head> tag.',
+                  ' Consider adding precedence="default" or moving it into the root <head> tag.',
                 );
               }
             }
@@ -5934,19 +5976,19 @@ export function isHostHoistableType(
             if (!isAsync) {
               console.error(
                 'Cannot render a sync or defer <script> outside the main document without knowing its order.' +
-                  ' Try adding async="" or moving it into the root <head> tag.',
+                ' Try adding async="" or moving it into the root <head> tag.',
               );
             } else if (props.onLoad || props.onError) {
               console.error(
                 'Cannot render a <script> with onLoad or onError listeners outside the main document.' +
-                  ' Try removing onLoad={...} and onError={...} or moving it into the root <head> tag or' +
-                  ' somewhere in the <body>.',
+                ' Try removing onLoad={...} and onError={...} or moving it into the root <head> tag or' +
+                ' somewhere in the <body>.',
               );
             } else {
               console.error(
                 'Cannot render a <script> outside the main document without `async={true}` and a non-empty `src` prop.' +
-                  ' Ensure there is a valid `src` and either make the script async or move it into the root <head> tag or' +
-                  ' somewhere in the <body>.',
+                ' Ensure there is a valid `src` and either make the script async or move it into the root <head> tag or' +
+                ' somewhere in the <body>.',
               );
             }
           }
