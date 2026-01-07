@@ -1,0 +1,29 @@
+Detailed Description of the Issue and Fix
+
+Issue:
+React's `<Activity>` component (and `LegacyHidden`) works by toggling the visibility of its subtree, often using `display: none`. While this visually hides normal DOM elements, `<title>` elements are special. When a `<title>` tag is present in the DOM, the browser (and React's behavior) updates the `document.title` to match its content, regardless of whether the `<title>` element itself is visible or hidden via CSS.
+
+Consequently, when an `<Activity>` containing a `<title>` is hidden:
+1. The DOM element `<title>` receives `display: none`.
+2. However, the `document.title` remains set to that hidden title's text.
+3. This incorrectly persists the title of a hidden/inactive view/tab.
+
+Fix Implementation:
+The fix acts at the host config level in `packages/react-dom-bindings/src/client/ReactFiberConfigDOM.js`, specifically intercepting the `hideInstance` and `unhideInstance` methods which are called when React reconciles the visibility state of an Activity.
+
+1.  **hideInstance**:
+    -   When hiding an element, we check if it is a `<title>` tag.
+    -   If it is, we cannot rely on CSS hiding alone. We must manually revert the `textContent` of this title element to reflect a "fallback" state, effectively "undoing" its effect on `document.title`.
+    -   The logic searches for a *sibling* `<title>` element in the DOM that is currently visible (not `display: none`).
+    -   If found, it copies that sibling's text content into the hidden title instance. This ensures `document.title` reflects the currently visible title.
+
+2.  **unhideInstance**:
+    -   When showing an element again, we check if it is a `<title>` tag.
+    -   Since `hideInstance` may have overwritten its text content with a fallback, we must restore the correct original text.
+    -   We reconstruct the text content from `props.children` (for simple text children) or `props.dangerouslySetInnerHTML`.
+    -   This re-asserts the correct title for the now-visible Activity.
+
+Deliverables:
+-   **solution.patch**: Applies the logic changes described above to `ReactFiberConfigDOM.js`.
+-   **test.patch**: Adds `ReactDOMTitleActivity-test.js` to `packages/react-dom/src/__tests__/`, verifying that `document.title` correctly updates when an `<Activity>` wrapping a `<title>` is toggled between hidden and visible modes, including fallback behavior.
+-   **Dockerfile**: Provides a reproducible environment (Node.js 18 + patches) to run the verified tests.
